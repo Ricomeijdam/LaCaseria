@@ -17,17 +17,17 @@ class Seizoen
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
     private $omschrijving;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $begindatum;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $einddatum;
 
