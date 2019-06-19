@@ -1,20 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}La Caseria{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/lacaseria/lacaseria/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/lacaseria/lacaseria/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 font-weight-normal">La Caseria</h1>
+        <p class="lead font-weight-normal">Ben je opzoek naar een hotel om goed te ontspannen en helemaal tot rust te komen! wacht niet langer en reserveer snel een kamer bij ons!</p>
+        <a class="btn btn-outline-primary" href="reservering">Reserveer nu!</a>
+    </div>
 </div>
+
+<div class="container marketing">
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Prachtig uitzicht! <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">Onze locatie staat om bekent voor zijn prachtige zons ondergangs! U kunt vanuit het hotel hemelsbreed kijken, weg dromen in de oneindige zee. En daarnaast kijken naar alle mooie verlichtingen die overal opgehangen zijn voor een spectaculaire sweer!</p>
+            <p class="lead">Wilt u meer weten over de liching van het resort, dat kan!</p><a class="btn btn-outline-info" href="/">Lees meer</a>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" src="{{ asset('images/view.jpg') }}">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">Ondervind het zelf!</span></h2>
+            <p class="lead">Ons resort is all inclusive, dat houdt in dat u elke dag kunt genieten van de vele gerechten die warm voor u klaar word gemaakt! daarnaast kunt u goed tot rust komen in het resort, wij proberen zo min mogelijk geluids overlast te vooroorzaken voor de prefecte ervaring die u nooit zult vergeten! Iedereen zult met open armen onvangen worden.</p>
+            <p class="lead">Wilt u meer weten over de al het eten dat wij serveren door de dag?</p><a class="btn btn-outline-info" href="/">Lees meer</a>
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" src="{{ asset('images/inside.jpg') }}">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">And lastly. <span class="text-muted">Waterpark!</span></h2>
+            <p class="lead">In ons resort zullen heel veel verschillende soort waterglijbanen zijn! Er zal dus voor iedereen genoeg keuzen zijn, om goed te vermaken!</p>
+            <p class="lead">Het park zal elke dag om 08:00 geopent worden, om 17:00 zullen we het weer dicht doen, om alles weer op te knappen voor de volgende dag!</p>
+            <p class="lead">Wilt u meer weten over ons waterpark in het resort?</p><a class="btn btn-outline-info" href="/">Lees meer</a>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" src="{{ asset('images/pool.jpg') }}">
+        </div>
+    </div>
+    <hr class="featurette-divider">
+
+    <div class="position-relative overflow-hidden p-3 p-md-2 m-md-3 text-center">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <p class="lead">Overtuigt om te gaan boeken! doe dat snel! Klikt hieronder om te reserveren.</p>
+            <a class="btn btn-outline-primary" href="reservering">Reserveer nu!</a>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+
 {% endblock %}

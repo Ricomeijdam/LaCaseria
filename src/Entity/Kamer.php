@@ -93,4 +93,7 @@ class Kamer
 
         return $this;
     }
+    public function __toString() {
+        return (string) $this->getId();
+    }
 }
