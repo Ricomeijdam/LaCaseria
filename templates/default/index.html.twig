@@ -1,12 +1,76 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La Caseria{% endblock %}
+{% block title %}La Casserai{% endblock %}
 
 {% block body %}
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">la Casserai
+            <small class="lead">All Inclusive Resort</small>
+        </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-fluid" data-src="holder.js/750x500/auto" src="{{ asset('images/clearshot.jpg') }}">
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="my-3">Inleiding</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+                <h3 class="my-3">Hotel Details </h3>
+                <ul>
+                    <li class="lead">Animatie is toegankelijk voor kinderen vanaf 8 jaar</li>
+                    <li>Waterpark</li>
+                    <li>Sauna's</li>
+                    <li>Stand</li>
+                    <li>Massages</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        <h3 class="my-4">Related Projects</h3>
+
+        <div class="row">
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <a href="#">
+                    <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+                </a>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 font-weight-normal">La Caseria</h1>
         <p class="lead font-weight-normal">Ben je opzoek naar een hotel om goed te ontspannen en helemaal tot rust te komen! wacht niet langer en reserveer snel een kamer bij ons!</p>
         <a class="btn btn-outline-primary" href="reservering">Reserveer nu!</a>
     </div>
