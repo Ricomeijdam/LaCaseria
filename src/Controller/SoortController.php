@@ -40,14 +40,11 @@ class SoortController extends AbstractController
         $soort = new Soort();
         $form = $this->createForm(SoortType::class, $soort);
         $form->handleRequest($request);
-        if ($this->security->isGranted('ROLE_ADMIN') ){
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($soort);
-                $entityManager->flush();
-            }
-        }else {
-            return $this->redirectToRoute('fos_user_security_login');
+        if ($form->isSubmitted() && $form->isValid()) {
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($soort);
+             $entityManager->flush();
+            return $this->redirectToRoute('soort_index');
         }
         return $this->render('soort/new.html.twig', [
             'soort' => $soort,
@@ -72,7 +69,7 @@ class SoortController extends AbstractController
     {
         $form = $this->createForm(SoortType::class, $soort);
         $form->handleRequest($request);
-        if ($this->security->isGranted('ROLE_ADMIN') ){
+        if ($this->security->isGranted('ROLE_SUPER_ADMIN') ){
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
             }

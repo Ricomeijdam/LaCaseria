@@ -22,8 +22,8 @@
                 <td>{{ soort.omschrijving }}</td>
                 <td>{{ soort.meerprijs }}</td>
                 <td>
-                    <a href="{{ path('soort_show', {'id': soort.id}) }}">show</a>
-                    <a href="{{ path('soort_edit', {'id': soort.id}) }}">edit</a>
+                    <a class="btn btn-outline-primary" href="{{ path('soort_show', {'id': soort.id}) }}">show</a>
+                    <a class="btn btn-outline-danger" href="{{ path('soort_edit', {'id': soort.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

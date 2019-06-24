@@ -9,18 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/extras")
  */
 class ExtrasController extends AbstractController
 {
-    private $security;
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
     /**
      * @Route("/", name="extras_index", methods={"GET"})
      */
@@ -40,14 +34,12 @@ class ExtrasController extends AbstractController
         $form = $this->createForm(ExtrasType::class, $extra);
         $form->handleRequest($request);
 
-        if ($this->security->isGranted('ROLE_ADMIN') ){
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($extra);
-                $entityManager->flush();
-        }else{
-                return $this->redirectToRoute('fos_user_security_login');
-            }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($extra);
+            $entityManager->flush();
+            return $this->redirectToRoute('extras_index');
+
         }
         return $this->render('extras/new.html.twig', [
             'extra' => $extra,
@@ -72,15 +64,12 @@ class ExtrasController extends AbstractController
     {
         $form = $this->createForm(ExtrasType::class, $extra);
         $form->handleRequest($request);
-        if ($this->security->isGranted('ROLE_ADMIN') ){
-            if ($form->isSubmitted() && $form->isValid()) {
-                $this->getDoctrine()->getManager()->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
 
-        }else{
-                return $this->redirectToRoute('fos_user_security_login', [
-                    'id' => $extra->getId(),
-                ]);
-            }
+            return $this->redirectToRoute('extras/index.html.twig', [
+                'id' => $extra->getId(),
+            ]);
         }
 
         return $this->render('extras/edit.html.twig', [

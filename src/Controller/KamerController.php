@@ -9,12 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/kamer")
  */
 class KamerController extends AbstractController
 {
+    private $security;
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
 
     /**
      * @Route("/", name="kamer_index", methods={"GET"})
@@ -35,14 +41,11 @@ class KamerController extends AbstractController
         $form = $this->createForm(KamerType::class, $kamer);
         $form->handleRequest($request);
 
-        if ($this->security->isGranted('ROLE_ADMIN') ){
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($kamer);
-                $entityManager->flush();
-            }
-        }else {
-            return $this->redirectToRoute('fos_user_security_login');
+        if ($form->isSubmitted() && $form->isValid()) {
+             $entityManager = $this->getDoctrine()->getManager();
+             $entityManager->persist($kamer);
+             $entityManager->flush();
+             return $this->redirectToRoute('kamer_index');
         }
         return $this->render('kamer/new.html.twig', [
             'kamer' => $kamer,
@@ -67,7 +70,7 @@ class KamerController extends AbstractController
     {
         $form = $this->createForm(KamerType::class, $kamer);
         $form->handleRequest($request);
-        if ($this->security->isGranted('ROLE_ADMIN') ){
+        if ($this->security->isGranted('ROLE_SUPER_ADMIN') ){
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
             }

@@ -24,8 +24,10 @@
                 <td><img src={{ vich_uploader_asset(kamer, 'imageFile') }} width="300px"></td>
                 <td>{{ kamer.prijs }}</td>
                 <td>
-                    <a href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
-                    <a href="{{ path('kamer_edit', {'id': kamer.id}) }}">edit</a>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <a class="btn btn-outline-primary" href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
+                        <a class="btn btn-outline-danger" href="{{ path('kamer_edit', {'id': kamer.id}) }}">edit</a>
+                    </div>
                 </td>
             </tr>
         {% else %}
