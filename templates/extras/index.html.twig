@@ -3,6 +3,7 @@
 {% block title %}Extras index{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
     <h1>Extras index</h1>
 
     <table class="table">
@@ -34,4 +35,8 @@
     </table>
 
     <a href="{{ path('extras_new') }}">Create new</a>
+    {% else %}
+        <a class="btn btn-outline-dark my-2 my-sm-0" href="/login/">Login</a>
+        <a class="btn btn-outline-dark my-2 my-sm-0" href="/register/">Registreer</a>
+    {% endif %}
 {% endblock %}

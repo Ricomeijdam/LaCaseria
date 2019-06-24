@@ -39,12 +39,6 @@ class Reservering
     private $checkoutdate;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Betaal", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $betaalid;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $betaalmethode;
@@ -98,18 +92,6 @@ class Reservering
     public function setCheckoutdate(\DateTimeInterface $checkoutdate): self
     {
         $this->checkoutdate = $checkoutdate;
-
-        return $this;
-    }
-
-    public function getBetaalid(): ?Betaal
-    {
-        return $this->betaalid;
-    }
-
-    public function setBetaalid(Betaal $betaalid): self
-    {
-        $this->betaalid = $betaalid;
 
         return $this;
     }

@@ -15,6 +15,10 @@
                 <th>Prijs</th>
                 <td>{{ kamer.prijs }}</td>
             </tr>
+            <tr>
+                <th>Foto</th>
+                <td><img src={{ vich_uploader_asset(kamer, 'imageFile') }} width="300px"></td>
+            </tr>
         </tbody>
     </table>
 

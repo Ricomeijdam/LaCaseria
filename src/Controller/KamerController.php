@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class KamerController extends AbstractController
 {
+
     /**
      * @Route("/", name="kamer_index", methods={"GET"})
      */
@@ -34,14 +35,15 @@ class KamerController extends AbstractController
         $form = $this->createForm(KamerType::class, $kamer);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($kamer);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('kamer_index');
+        if ($this->security->isGranted('ROLE_ADMIN') ){
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($kamer);
+                $entityManager->flush();
+            }
+        }else {
+            return $this->redirectToRoute('fos_user_security_login');
         }
-
         return $this->render('kamer/new.html.twig', [
             'kamer' => $kamer,
             'form' => $form->createView(),
@@ -65,11 +67,12 @@ class KamerController extends AbstractController
     {
         $form = $this->createForm(KamerType::class, $kamer);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('kamer_index', [
+        if ($this->security->isGranted('ROLE_ADMIN') ){
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+            }
+        }else{
+            return $this->redirectToRoute('fos_user_security_login', [
                 'id' => $kamer->getId(),
             ]);
         }

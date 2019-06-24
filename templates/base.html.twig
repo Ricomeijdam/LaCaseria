@@ -24,14 +24,19 @@
             <h4 class="my-0 mr-md-auto font-weight-normal">la Casserai</h4>
             <nav class="my-2 my-md-0 mr-md-3">
                 <a class="p-2 text-dark" href="/">Home</a>
-                <a class="p-2 text-dark" href="/reservering">Resevering</a>
-                <a class="p-2 text-dark" href="/kamer">Kamer</a>
-                <a class="p-2 text-dark" href="/extras">Extras</a>
-                <a class="p-2 text-dark" href="/soort">Soort</a>
-                <a class="p-2 text-dark" href="/image">Image</a>
-                <a class="p-2 text-dark" href="/seizoen">Seizoen</a>
+                <a class="p-2 text-dark" href="/lijstbeschikbaar">Huren</a>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <a class="p-2 text-dark" href="/reservering">Resevering</a>
+                    <a class="p-2 text-dark" href="/kamer">Kamer</a>
+                    <a class="p-2 text-dark" href="/extras">Extras</a>
+                    <a class="p-2 text-dark" href="/soort">Soort</a>
+                    <a class="p-2 text-dark" href="/seizoen">Seizoen</a>
+                {% endif %}
+                <a class="p-2 text-dark" href="/fotos">Foto's</a>
+                <a class="p-2 text-dark" href="/contact">Contact</a>
+
                 {% if app.user %}
-                    <a class="p-2 text-dark" href="user">Profiel</a>
+                    <a class="p-2 text-dark" href="/user">Profiel</a>
                 {% else %}
 
                 {% endif %}
@@ -52,8 +57,12 @@
         {% endblock fos_user_content %}
     </div>
 
+    <div class="container">
+
     {% block body %} {% endblock %}
     {% block javascripts %}{% endblock %}
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -64,18 +73,28 @@
 <footer class="pt-4 my-md-5 pt-md-5 border-top bg-light">
     <div class="row">
         <div class="col-12 col-md">
-            <small class="d-block mb-3 text-muted">&copy; 2019</small>
         </div>
         <div class="col-6 col-md">
             <h5>Pagina's</h5>
             <ul class="list-unstyled text-small">
+
                 <li><a class="text-muted" href="/">Home</a></li>
-                <li><a class="text-muted" href="reservering">Resevering</a></li>
-                <li><a class="text-muted" href="kamer">Kamer</a></li>
-                <li><a class="text-muted" href="extras">Extras</a></li>
-                <li><a class="text-muted" href="soort">Soort</a></li>
-                <li><a class="text-muted" href="image">Image</a></li>
-                <li><a class="text-muted" href="seizoen">Seizoen</a></li>
+                <li><a class="text-muted" href="lijstbeschikbaar">Huren</a></li>
+
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <li><a class="text-muted" href="/reservering">Resevering</a></li>
+                    <li><a class="text-muted" href="/kamer">Kamer</a></li>
+                    <li><a class="text-muted" href="/extras">Extras</a></li>
+                    <li><a class="text-muted" href="/soort">Soort</a></li>
+                    <li><a class="text-muted" href="/seizoen">Seizoen</a></li>
+                {% endif %}
+
+                {% if app.user %}
+                <a class="text-muted" href="/user">Profiel</a>
+                {% else %}
+
+                {% endif %}
+
             </ul>
         </div>
         <div class="col-6 col-md">
@@ -90,9 +109,8 @@
         <div class="col-6 col-md">
             <h5>Over Ons</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Team</a></li>
-                <li><a class="text-muted" href="#">Locatie</a></li>
-                <li><a class="text-muted" href="#">Contact</a></li>
+                <li><a class="text-muted" href="/fotos">Foto's</a></li>
+                <li><a class="text-muted" href="/contact">Contact</a></li>
             </ul>
         </div>
     </div>

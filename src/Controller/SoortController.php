@@ -9,12 +9,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/soort")
  */
 class SoortController extends AbstractController
 {
+    private $security;
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     /**
      * @Route("/", name="soort_index", methods={"GET"})
      */
@@ -33,15 +40,15 @@ class SoortController extends AbstractController
         $soort = new Soort();
         $form = $this->createForm(SoortType::class, $soort);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($soort);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('soort_index');
+        if ($this->security->isGranted('ROLE_ADMIN') ){
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($soort);
+                $entityManager->flush();
+            }
+        }else {
+            return $this->redirectToRoute('fos_user_security_login');
         }
-
         return $this->render('soort/new.html.twig', [
             'soort' => $soort,
             'form' => $form->createView(),
@@ -65,15 +72,15 @@ class SoortController extends AbstractController
     {
         $form = $this->createForm(SoortType::class, $soort);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('soort_index', [
+        if ($this->security->isGranted('ROLE_ADMIN') ){
+            if ($form->isSubmitted() && $form->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+            }
+        }else{
+            return $this->redirectToRoute('fos_user_security_login', [
                 'id' => $soort->getId(),
-            ]);
+                ]);
         }
-
         return $this->render('soort/edit.html.twig', [
             'soort' => $soort,
             'form' => $form->createView(),

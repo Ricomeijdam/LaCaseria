@@ -3,6 +3,8 @@
 {% block title %}Seizoen index{% endblock %}
 
 {% block body %}
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
     <h1>Seizoen index</h1>
 
     <table class="table">
@@ -38,4 +40,9 @@
     </table>
 
     <a href="{{ path('seizoen_new') }}">Create new</a>
+
+{% else %}
+    <a class="btn btn-outline-dark my-2 my-sm-0" href="/login/">Login</a>
+    <a class="btn btn-outline-dark my-2 my-sm-0" href="/register/">Registreer</a>
+    {% endif %}
 {% endblock %}

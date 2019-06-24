@@ -17,7 +17,6 @@ class ReserveringType extends AbstractType
             ->add('betaalmethode')
             ->add('kamerid')
             ->add('userid')
-            ->add('betaalid')
         ;
     }
 

@@ -3,12 +3,15 @@
 {% block title %}Kamer index{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
     <h1>Kamer index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Naam</th>
+                <th>Foto</th>
                 <th>Prijs</th>
                 <th>actions</th>
             </tr>
@@ -17,6 +20,8 @@
         {% for kamer in kamers %}
             <tr>
                 <td>{{ kamer.id }}</td>
+                <td>{{ kamer.naam }}</td>
+                <td><img src={{ vich_uploader_asset(kamer, 'imageFile') }} width="300px"></td>
                 <td>{{ kamer.prijs }}</td>
                 <td>
                     <a href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
@@ -32,4 +37,8 @@
     </table>
 
     <a href="{{ path('kamer_new') }}">Create new</a>
+    {% else %}
+        <a class="btn btn-outline-dark my-2 my-sm-0" href="/login/">Login</a>
+        <a class="btn btn-outline-dark my-2 my-sm-0" href="/register/">Registreer</a>
+    {% endif %}
 {% endblock %}

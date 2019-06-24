@@ -1,0 +1,7 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        kamer:
+            uri_prefix: /images/kamer
+            upload_destination: '%kernel.project_dir%/public/images/kamer'
