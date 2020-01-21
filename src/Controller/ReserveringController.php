@@ -15,7 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ReserveringController extends AbstractController
 {
-    /**
+
+     /**
      * @Route("/", name="reservering_index", methods={"GET"})
      */
     public function index(ReserveringRepository $reserveringRepository): Response

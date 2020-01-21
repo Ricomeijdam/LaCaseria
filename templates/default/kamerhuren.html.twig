@@ -6,7 +6,7 @@
 
     <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-10">
 
     <h3>Beschikbaar</h3>
 
@@ -14,6 +14,8 @@
         <thead>
         <tr>
             <th>Id</th>
+            <th>Naam</th>
+            <th>Foto</th>
             <th>Prijs</th>
             <th>actions</th>
         </tr>
@@ -23,15 +25,17 @@
         {% for kamer in kamers if kamer.beschikbaar == 1 %}
             <tr>
                 <td>{{ kamer.id }}</td>
+                <td>{{ kamer.naam }}</td>
+                <td><img src={{ vich_uploader_asset(kamer, 'imageFile') }} width="150px"></td>
                 <td> € {{ kamer.prijs }}</td>
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <td>
                     <a class="btn btn-outline-success" href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
                     <a class="btn btn-outline-danger" href="{{ path('kamer_edit', {'id': kamer.id}) }}">edit</a>
                 </td>
             {% else %}
                 <td>
-                    <a href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
+                    <a class="btn btn-outline-success" href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
                 </td>
             {% endif %}
         {% else %}
@@ -42,10 +46,9 @@
         </tbody>
     </table>
 
-
     </div>
 
-        <div class="col-md-6">
+        <div class="col-md-10">
 
 <h3>Niet beschikbaar</h3>
 
@@ -53,6 +56,8 @@
         <thead>
         <tr>
             <th>Id</th>
+            <th>Naam</th>
+            <th>Foto</th>
             <th>Prijs</th>
             <th>actions</th>
         </tr>
@@ -62,8 +67,10 @@
         {% for kamer in kamers if kamer.beschikbaar == 0 %}
             <tr>
                 <td>{{ kamer.id }}</td>
+                <td>{{ kamer.naam }}</td>
+                <td><img src={{ vich_uploader_asset(kamer, 'imageFile') }} width="150px"></td>
                 <td> € {{ kamer.prijs }}</td>
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
                     <td>
                         <a class="btn btn-outline-success" href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
                         <a class="btn btn-outline-danger" href="{{ path('kamer_edit', {'id': kamer.id}) }}">edit</a>

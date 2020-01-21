@@ -21,13 +21,11 @@
             <tr>
                 <td>{{ kamer.id }}</td>
                 <td>{{ kamer.naam }}</td>
-                <td><img src={{ vich_uploader_asset(kamer, 'imageFile') }} width="300px"></td>
-                <td>{{ kamer.prijs }}</td>
+                <td><img src={{ vich_uploader_asset(kamer, 'imageFile') }} width="200px"></td>
+                <td>€ {{ kamer.prijs }}</td>
                 <td>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <a class="btn btn-outline-primary" href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
-                        <a class="btn btn-outline-danger" href="{{ path('kamer_edit', {'id': kamer.id}) }}">edit</a>
-                    </div>
+                    <a class="btn btn-outline-primary" href="{{ path('kamer_show', {'id': kamer.id}) }}">show</a>
+                    <a class="btn btn-outline-danger" href="{{ path('kamer_edit', {'id': kamer.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

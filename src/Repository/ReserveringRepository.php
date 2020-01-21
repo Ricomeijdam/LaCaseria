@@ -47,4 +47,21 @@ class ReserveringRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param array $value
+     * @return mixed
+     */
+    public function getBetween(array $value)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('IDENTITY(r.Kamer)')
+            ->where('r.checkindate BETWEEN :begin AND :end')
+            ->orWhere('r.checkoutdate BETWEEN :begin AND :end')
+            ->setParameter('begin', $value[0])
+            ->setParameter('end', $value[1])
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

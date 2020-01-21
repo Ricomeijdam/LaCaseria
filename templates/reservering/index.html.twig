@@ -6,6 +6,12 @@
 
     <h1>Reservering index</h1>
 
+    <form action="{{ path('kamer_check') }}" method="post">
+        <input type="date" name="BeginDate">
+        <input type="date" name="EndDate">
+        <input type="submit" name="submit">
+    </form>
+
     <table class="table">
         <thead>
             <tr>
@@ -24,10 +30,10 @@
                 <td>{{ reservering.checkoutdate ? reservering.checkoutdate|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ reservering.betaalmethode }}</td>
                 <td>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <a class="btn btn-outline-danger" href="{{ path('reservering_show', {'id': reservering.id}) }}">show</a>
+                    <a class="btn btn-outline-danger" href="{{ path('reservering_show', {'id': reservering.id}) }}">show</a>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}
                         <a class="btn btn-outline-primary" href="{{ path('reservering_edit', {'id': reservering.id}) }}">edit</a>
-                    </div>
+                        {% endif %}
                 </td>
             </tr>
         {% else %}

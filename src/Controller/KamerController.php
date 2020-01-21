@@ -23,6 +23,31 @@ class KamerController extends AbstractController
     }
 
     /**
+     * @Route("/check", name="kamer_check", methods={"POST"})
+     */
+    public function checkDate()
+    {
+        $BeginDate = $_POST["BeginDate"];
+        $EndDate = $_POST["EndDate"];
+
+        $reservering = $this->getDoctrine()
+            ->getRepository(Reservering::class)
+            ->getBetween(array($BeginDate, $EndDate));
+
+        $input = array();
+        for ($x = 0; $x < count($reservering); $x++) {
+            array_push($input, $reservering[$x][1]);
+        }
+
+        $available = $this->getDoctrine()
+            ->getRepository(Kamer::class)
+            ->notIn($input);
+
+        return $this->render('kamer/index.html.twig', [
+            'kamers' => $available,
+        ]);
+    }
+    /**
      * @Route("/", name="kamer_index", methods={"GET"})
      */
     public function index(KamerRepository $kamerRepository): Response
